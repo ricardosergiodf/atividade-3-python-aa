@@ -1,6 +1,7 @@
 import logging
 import datetime
 import os
+import sys
 import traceback
 from botcity.web import WebBot, Browser, By
 import pandas as pd
@@ -36,15 +37,15 @@ def bot_driver_setup():
 
 
 def error_exception():
-    error_msg = traceback.format_exc()  # captura o erro com traceback
+    exc_type, exc_value, exc_tb = sys.exc_info()  # Captura a exceção atual
 
-    if error_msg.strip():  # Verifica se há erro
-        tb = traceback.extract_tb(traceback.sys.exc_info()[2])  # Obtém detalhes da exceção
+    if exc_type:  # Verifica se há um erro capturado
+        tb = traceback.extract_tb(exc_tb)  # Obtém detalhes do traceback
         last_trace = tb[-1]  # Última linha do traceback (onde o erro ocorreu)
 
         line_number = last_trace.lineno  # Número da linha do erro
-        error_type = traceback.sys.exc_info()[0].__name__  # Tipo do erro (ex: ValueError, KeyError)
-        error_message = str(traceback.sys.exc_info()[1])  # Mensagem do erro
+        error_type = exc_type.__name__  # Tipo do erro (ex: ValueError, KeyError)
+        error_message = str(exc_value)  # Mensagem do erro
 
         logging.error(f"Erro do tipo {error_type} na linha {line_number}: {error_message}.")
     else:
@@ -90,11 +91,9 @@ def read_excel():
         challenge_spreadsheet = os.path.abspath("./challenge.xlsx")
         data = pd.read_excel(challenge_spreadsheet)
         if data.empty:
-            logging.info("Ocorreu um erro na fase da leitura do Excel.")
-            return None
+            raise ValueError("O arquivo Excel está vazio.")
         else:
-            logging.info("Arquivo Excel lido com sucesso.")
-            return data
+            return data  # retorna os dados do arquivo excel
     except Exception:
         error_exception()
         return False
@@ -144,6 +143,7 @@ def success_message(web_bot):
     try:
         success_message = web_bot.find_element("message2", By.CLASS_NAME).text
         logging.info(f"Mensagem de sucesso: {success_message}")
+        return True
     except Exception:
         error_exception()
         return False

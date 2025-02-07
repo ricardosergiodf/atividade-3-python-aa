@@ -26,13 +26,20 @@ def main():
 
     web_bot = bot_driver_setup()
 
+
     download_phase = download_excel(web_bot, url)
     if not download_phase:
         logging.info("Ocorreu um erro na fase de download.")
     else:
         logging.info("Download concluido com sucesso.")
 
+
     data = read_excel()
+    if data is not False:
+        logging.info("Arquivo Excel lido com sucesso.")
+    else:
+        logging.info("Ocorreu um erro na fase de ler o arquivo Excel.")
+
 
     start_phase = start_challenge(web_bot)
     if not start_phase:
@@ -40,12 +47,20 @@ def main():
     else:
         logging.info("Foi iniciado o processo.")
 
+
     fill_phase = fill_fields(web_bot, data)
     if not fill_phase:
         logging.info("Ocorreu um erro na fase de preencher os campos.")
     else:
         logging.info("Elementos preenchidos corretamente.")
-        success_message(web_bot)
+        
+
+    success = success_message(web_bot)
+    if not success:
+        logging.info("Ocorreu um erro na fase de capturar a mensagem de sucesso.")
+    else:
+        logging.info("Sucesso.")
+
 
     browse_close(web_bot)
 

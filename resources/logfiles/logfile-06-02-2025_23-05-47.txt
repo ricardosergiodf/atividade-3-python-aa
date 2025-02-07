@@ -1,0 +1,15 @@
+(06/02/2025 23:05:47) - INFO - Inicio - Atividade 3 - Python & Automation Anywhere
+(06/02/2025 23:05:47) - INFO - Maestro desativado -> Executando localmente
+(06/02/2025 23:05:47) - INFO - Abrindo Browser na URL: https://rpachallenge.com/
+(06/02/2025 23:05:50) - INFO - Clicado no botao de Download Excel, fazendo o download do arquivo.
+(06/02/2025 23:05:51) - INFO - Download concluido com sucesso.
+(06/02/2025 23:05:51) - INFO - Lendo o arquivo Excel.
+(06/02/2025 23:05:51) - INFO - Arquivo Excel lido com sucesso.
+(06/02/2025 23:05:51) - INFO - Capturado e clicado no botao de Start.
+(06/02/2025 23:05:51) - INFO - Foi iniciado o processo.
+(06/02/2025 23:05:51) - INFO - Capturando elementos, preenchendo nos campos e clicando no botao de Submit.
+(06/02/2025 23:05:54) - INFO - Elementos preenchidos corretamente.
+(06/02/2025 23:05:54) - INFO - Mensagem de sucesso: Your success rate is 100% ( 70 out of 70 fields) in 2572 milliseconds
+(06/02/2025 23:05:54) - INFO - Sucesso.
+(06/02/2025 23:05:54) - INFO - Fechando Browser.
+(06/02/2025 23:05:56) - INFO - Fim - Atividade 3 - Python & Automation Anywhere
